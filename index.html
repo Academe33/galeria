@@ -1,114 +1,715 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
-<title>Carrossel Academe</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrossel Fala Mike</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,sans-serif;touch-action:manipulation;}
-#viewer{position:fixed;inset:0;background:#0D0B14;z-index:1;}
-.slide{position:absolute;inset:0;display:none;align-items:center;justify-content:center;}
-.slide.active{display:flex;}
-.slide img{max-width:100%;max-height:80%;object-fit:contain;}
-#btnL{position:fixed;left:0;top:0;width:46%;height:78%;z-index:999;background:rgba(0,0,0,0.001);border:none;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation;}
-#btnR{position:fixed;right:0;top:0;width:46%;height:78%;z-index:999;background:rgba(0,0,0,0.001);border:none;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation;}
-#aL{position:fixed;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:36px;pointer-events:none;z-index:1000;text-shadow:0 2px 12px #7333FF88;}
-#aR{position:fixed;right:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:36px;pointer-events:none;z-index:1000;text-shadow:0 2px 12px #7333FF88;}
-#cnt{position:fixed;top:18px;right:18px;background:rgba(115,51,255,.9);color:#fff;font-size:13px;padding:5px 14px;border-radius:20px;z-index:1001;pointer-events:none;font-weight:700;letter-spacing:.3px;box-shadow:0 0 12px #7333FF66;}
-#btnDl{position:fixed;top:14px;left:16px;z-index:1002;background:rgba(115,51,255,.9);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 0 12px #7333FF66;-webkit-appearance:none;appearance:none;touch-action:manipulation;}
-#btnDl:active{transform:scale(.96);opacity:.85;}
-#toast{position:fixed;top:62px;left:50%;transform:translateX(-50%);background:rgba(115,51,255,.95);color:#fff;padding:9px 20px;border-radius:24px;font-size:13px;font-weight:600;z-index:2000;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;box-shadow:0 0 16px #7333FF88;}
-#toast.show{opacity:1;}
-#dots{position:fixed;bottom:74px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:1001;}
-.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-block;cursor:pointer;touch-action:manipulation;transition:background .2s,transform .2s;}
-.dot.active{background:#7333FF;transform:scale(1.3);box-shadow:0 0 6px #7333FF;}
-#thumbs{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:1001;overflow-x:auto;max-width:96vw;padding:2px 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
-#thumbs::-webkit-scrollbar{display:none;}
-.thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0;opacity:.28;border:2px solid transparent;cursor:pointer;touch-action:manipulation;transition:opacity .2s,border-color .2s,box-shadow .2s;}
-.thumb.active{opacity:1;border-color:#7333FF;box-shadow:0 0 8px #7333FF88;}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    gap: 32px;
+  }
+
+  .slide-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .slide-label {
+    color: #666;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .slide {
+    width: 540px;
+    height: 540px;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ======================== SLIDE 1 — CAPA ======================== */
+  .slide-1 {
+    background: #0D0A1A;
+  }
+  .slide-1 .bg-glow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(160,100,255,0.18) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .slide-1 .mike-img {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 280px;
+    opacity: 0.95;
+  }
+  .slide-1 .content {
+    position: relative;
+    z-index: 2;
+    padding: 48px 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide-1 .tag {
+    background: rgba(160,100,255,0.2);
+    border: 1px solid rgba(160,100,255,0.4);
+    color: #C084FC;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+  .slide-1 h1 {
+    font-size: 38px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    max-width: 280px;
+    margin-bottom: 16px;
+  }
+  .slide-1 h1 span {
+    color: #A855F7;
+  }
+  .slide-1 .sub {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.5;
+    max-width: 240px;
+  }
+
+  /* ======================== SLIDE 2 ======================== */
+  .slide-2 {
+    background: #0D0A1A;
+  }
+  .slide-2 .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7C3AED, #A855F7, #C084FC);
+  }
+  .slide-2 .content {
+    position: relative;
+    z-index: 2;
+    padding: 48px 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .slide-2 .number {
+    font-size: 100px;
+    font-weight: 900;
+    color: rgba(168,85,247,0.12);
+    line-height: 1;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    letter-spacing: -5px;
+  }
+  .slide-2 .stat-badge {
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    color: white;
+    font-size: 52px;
+    font-weight: 900;
+    padding: 12px 24px;
+    border-radius: 16px;
+    display: inline-block;
+    margin-bottom: 20px;
+    letter-spacing: -2px;
+    width: fit-content;
+  }
+  .slide-2 h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    margin-bottom: 12px;
+  }
+  .slide-2 p {
+    font-size: 15px;
+    color: #888;
+    line-height: 1.6;
+    max-width: 360px;
+  }
+  .slide-2 .mike-small {
+    position: absolute;
+    bottom: 20px;
+    right: 24px;
+    width: 90px;
+    opacity: 0.7;
+  }
+
+  /* ======================== SLIDE 3 ======================== */
+  .slide-3 {
+    background: #0D0A1A;
+  }
+  .slide-3 .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7C3AED, #A855F7, #C084FC);
+  }
+  .slide-3 .content {
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .slide-3 .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #A855F7;
+    margin-bottom: 16px;
+  }
+  .slide-3 h2 {
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+  }
+  .slide-3 h2 span {
+    color: #A855F7;
+  }
+  .slide-3 .reasons {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .slide-3 .reason {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .slide-3 .reason-icon {
+    width: 32px;
+    height: 32px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .slide-3 .reason-text {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.4;
+    padding-top: 6px;
+  }
+  .slide-3 .reason-text strong {
+    color: #fff;
+    font-weight: 700;
+  }
+  .slide-3 .mike-small {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    width: 80px;
+    opacity: 0.6;
+  }
+
+  /* ======================== SLIDE 4 ======================== */
+  .slide-4 {
+    background: #0D0A1A;
+  }
+  .slide-4 .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7C3AED, #A855F7, #C084FC);
+  }
+  .slide-4 .content {
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .slide-4 .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #A855F7;
+    margin-bottom: 16px;
+  }
+  .slide-4 h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    margin-bottom: 24px;
+  }
+  .slide-4 h2 span { color: #A855F7; }
+  .slide-4 .comparison {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+  }
+  .slide-4 .col {
+    flex: 1;
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .slide-4 .col-bad {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.2);
+  }
+  .slide-4 .col-good {
+    background: rgba(168,85,247,0.1);
+    border: 1px solid rgba(168,85,247,0.3);
+  }
+  .slide-4 .col-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .slide-4 .col-bad .col-title { color: #F87171; }
+  .slide-4 .col-good .col-title { color: #C084FC; }
+  .slide-4 .col-item {
+    font-size: 13px;
+    color: #aaa;
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    line-height: 1.3;
+  }
+  .slide-4 .col-item:last-child { border-bottom: none; }
+  .slide-4 .mike-small {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    width: 80px;
+    opacity: 0.6;
+  }
+
+  /* ======================== SLIDE 5 ======================== */
+  .slide-5 {
+    background: #0D0A1A;
+  }
+  .slide-5 .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7C3AED, #A855F7, #C084FC);
+  }
+  .slide-5 .content {
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .slide-5 .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #A855F7;
+    margin-bottom: 16px;
+  }
+  .slide-5 h2 {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    margin-bottom: 24px;
+  }
+  .slide-5 .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .slide-5 .step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(168,85,247,0.06);
+    border: 1px solid rgba(168,85,247,0.15);
+    border-radius: 12px;
+    padding: 12px 16px;
+  }
+  .slide-5 .step-num {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    color: white;
+    flex-shrink: 0;
+  }
+  .slide-5 .step-text {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.3;
+  }
+  .slide-5 .step-text strong { color: #fff; font-weight: 700; }
+  .slide-5 .mike-small {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    width: 80px;
+    opacity: 0.6;
+  }
+
+  /* ======================== SLIDE 6 — SOCIAL PROOF ======================== */
+  .slide-6 {
+    background: #0D0A1A;
+  }
+  .slide-6 .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #7C3AED, #A855F7, #C084FC);
+  }
+  .slide-6 .content {
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+  .slide-6 .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #A855F7;
+    margin-bottom: 16px;
+  }
+  .slide-6 h2 {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+  .slide-6 .testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .slide-6 .test-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .slide-6 .test-stars {
+    color: #FBBF24;
+    font-size: 12px;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+  .slide-6 .test-text {
+    font-size: 13px;
+    color: #ccc;
+    line-height: 1.4;
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .slide-6 .test-author {
+    font-size: 11px;
+    color: #666;
+    font-weight: 600;
+  }
+  .slide-6 .mike-small {
+    position: absolute;
+    bottom: 16px;
+    right: 20px;
+    width: 80px;
+    opacity: 0.6;
+  }
+
+  /* ======================== SLIDE 7 — CTA ======================== */
+  .slide-7 {
+    background: linear-gradient(135deg, #0D0A1A 0%, #1A0D2E 100%);
+  }
+  .slide-7 .glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(140,60,255,0.2) 0%, transparent 65%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .slide-7 .content {
+    position: relative;
+    z-index: 2;
+    padding: 44px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .slide-7 .mike-img {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+  .slide-7 h2 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 14px;
+  }
+  .slide-7 h2 span { color: #A855F7; }
+  .slide-7 .sub {
+    font-size: 15px;
+    color: #888;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    max-width: 340px;
+  }
+  .slide-7 .cta-btn {
+    background: linear-gradient(135deg, #7C3AED, #A855F7);
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 14px 36px;
+    border-radius: 100px;
+    display: inline-block;
+    letter-spacing: -0.3px;
+    margin-bottom: 14px;
+  }
+  .slide-7 .cta-link {
+    font-size: 13px;
+    color: #666;
+  }
+  .slide-7 .cta-link span {
+    color: #A855F7;
+    font-weight: 600;
+  }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div id="viewer">
-  <div class="slide active" id="s0"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/8af54ba3b_generated_image.png"/></div>
-  <div class="slide" id="s1"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fb7a1a1e9_generated_image.png"/></div>
-  <div class="slide" id="s2"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/d3101c652_generated_image.png"/></div>
-  <div class="slide" id="s3"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ba7bc2aef_generated_image.png"/></div>
-  <div class="slide" id="s4"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/42a561db6_generated_image.png"/></div>
-  <div class="slide" id="s5"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ad5b6c6ab_generated_image.png"/></div>
-  <div class="slide" id="s6"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/5ae6adc81_generated_image.png"/></div>
-  <div class="slide" id="s7"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/420f503c2_generated_image.png"/></div>
+<!-- SLIDE 1 — CAPA -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 1 — Capa</div>
+  <div class="slide slide-1">
+    <div class="bg-glow"></div>
+    <img class="mike-img" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+    <div class="content">
+      <div class="tag">Fala Mike</div>
+      <h1>Você trava<br>na hora de<br><span>falar inglês?</span></h1>
+      <p class="sub">O problema não é você.<br>É o jeito que te ensinaram.</p>
+    </div>
+  </div>
 </div>
 
-<button id="btnL" onclick="go(cur-1)"></button>
-<button id="btnR" onclick="go(cur+1)"></button>
-<span id="aL">&#8592;</span>
-<span id="aR">&#8594;</span>
-<div id="cnt">1 / 7</div>
-<button id="btnDl" onclick="salvar()">⬇️ Salvar esta</button>
-<div id="toast"></div>
-
-<div id="dots">
-  <span class="dot active" onclick="go(0)"></span>
-  <span class="dot" onclick="go(1)"></span>
-  <span class="dot" onclick="go(2)"></span>
-  <span class="dot" onclick="go(3)"></span>
-  <span class="dot" onclick="go(4)"></span>
-  <span class="dot" onclick="go(5)"></span>
-  <span class="dot" onclick="go(6)"></span>
-  <span class="dot" onclick="go(7)"></span>
+<!-- SLIDE 2 — DADO IMPACTANTE -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 2 — Dado Impactante</div>
+  <div class="slide slide-2">
+    <div class="top-bar"></div>
+    <div class="number">99</div>
+    <div class="content">
+      <div class="stat-badge">99%</div>
+      <h2>dos brasileiros<br>não falam inglês<br>fluente</h2>
+      <p>Segundo o EF Proficiency Index 2025,<br>o Brasil está na 81ª posição entre 116 países.</p>
+    </div>
+    <img class="mike-small" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+  </div>
 </div>
 
-<div id="thumbs">
-  <img class="thumb active" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/8af54ba3b_generated_image.png" onclick="go(0)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fb7a1a1e9_generated_image.png" onclick="go(1)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/d3101c652_generated_image.png" onclick="go(2)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ba7bc2aef_generated_image.png" onclick="go(3)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/42a561db6_generated_image.png" onclick="go(4)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ad5b6c6ab_generated_image.png" onclick="go(5)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/5ae6adc81_generated_image.png" onclick="go(6)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/420f503c2_generated_image.png" onclick="go(7)"/>
+<!-- SLIDE 3 — O PROBLEMA -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 3 — O Problema</div>
+  <div class="slide slide-3">
+    <div class="top-bar"></div>
+    <div class="content">
+      <div class="eyebrow">O Problema</div>
+      <h2>Por que você<br>estuda e ainda<br><span>não consegue falar?</span></h2>
+      <div class="reasons">
+        <div class="reason">
+          <div class="reason-icon">😰</div>
+          <div class="reason-text"><strong>Medo de errar</strong> — paralisa na hora de abrir a boca</div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon">📚</div>
+          <div class="reason-text"><strong>Só teoria</strong> — aprendeu gramática, mas nunca praticou conversar</div>
+        </div>
+        <div class="reason">
+          <div class="reason-icon">🤐</div>
+          <div class="reason-text"><strong>Zero prática real</strong> — nunca teve com quem falar sem julgamento</div>
+        </div>
+      </div>
+    </div>
+    <img class="mike-small" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+  </div>
 </div>
+
+<!-- SLIDE 4 — MÉTODO ERRADO VS CERTO -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 4 — Método</div>
+  <div class="slide slide-4">
+    <div class="top-bar"></div>
+    <div class="content">
+      <div class="eyebrow">A Solução</div>
+      <h2>Inglês se aprende<br><span>conversando</span> — não estudando</h2>
+      <div class="comparison">
+        <div class="col col-bad">
+          <div class="col-title">❌ Método antigo</div>
+          <div class="col-item">Exercícios escritos</div>
+          <div class="col-item">Gramática decorada</div>
+          <div class="col-item">Aula sem prática</div>
+          <div class="col-item">Anos sem resultado</div>
+        </div>
+        <div class="col col-good">
+          <div class="col-title">✓ Fala Mike</div>
+          <div class="col-item">Conversação real</div>
+          <div class="col-item">IA corrige na hora</div>
+          <div class="col-item">Sem julgamento</div>
+          <div class="col-item">22 dias de confiança</div>
+        </div>
+      </div>
+    </div>
+    <img class="mike-small" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+  </div>
+</div>
+
+<!-- SLIDE 5 — COMO FUNCIONA -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 5 — Como Funciona</div>
+  <div class="slide slide-5">
+    <div class="top-bar"></div>
+    <div class="content">
+      <div class="eyebrow">Como Funciona</div>
+      <h2>Em 22 dias você<br>já sente confiança</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Baixe o app</strong> e fale com a IA em inglês agora</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>5 a 20 min por dia</strong> de conversação real, sem vergonha</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>IA corrige pronúncia</strong> e gramática em tempo real</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Evolução visível</strong> — relatório semanal do seu progresso</div>
+        </div>
+      </div>
+    </div>
+    <img class="mike-small" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+  </div>
+</div>
+
+<!-- SLIDE 6 — PROVA SOCIAL -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 6 — Prova Social</div>
+  <div class="slide slide-6">
+    <div class="top-bar"></div>
+    <div class="content">
+      <div class="eyebrow">+2.000 alunos</div>
+      <h2>O que estão falando<br>sobre o Fala Mike</h2>
+      <div class="testimonials">
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-text">"Estudei inglês por 3 anos e nunca consegui falar. Em 1 mês com o Mike já conversei com um estrangeiro."</div>
+          <div class="test-author">— Mariana S., São Paulo</div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars">★★★★★</div>
+          <div class="test-text">"A IA não te julga. Você erra, ela corrige, e você aprende. Simples assim."</div>
+          <div class="test-author">— Carlos R., Fortaleza</div>
+        </div>
+      </div>
+    </div>
+    <img class="mike-small" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+  </div>
+</div>
+
+<!-- SLIDE 7 — CTA -->
+<div class="slide-wrapper">
+  <div class="slide-label">Slide 7 — CTA</div>
+  <div class="slide slide-7">
+    <div class="glow"></div>
+    <div class="content">
+      <img class="mike-img" src="https://base44.app/api/apps/69b31c93e0ddd0abcd7d5ae9/files/mp/public/69b31c93e0ddd0abcd7d5ae9/9ae391e8b_mike_final.png" alt="Mike">
+      <h2>Pare de estudar.<br><span>Comece a falar.</span></h2>
+      <p class="sub">7 dias grátis. Sem compromisso.<br>Sem vergonha de errar.</p>
+      <div class="cta-btn">Baixar o Fala Mike</div>
+      <div class="cta-link">lp.falamike.com — <span>Acesso gratuito por 7 dias</span></div>
+    </div>
+  </div>
+</div>
+
 
 <script>
-var cur=0,tot=8;
-var imgs=[
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/8af54ba3b_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fb7a1a1e9_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/d3101c652_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ba7bc2aef_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/42a561db6_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ad5b6c6ab_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/5ae6adc81_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/420f503c2_generated_image.png'
-];
-function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
-function salvar(){
-  var idx=cur;var url=imgs[idx];var nome='academe_slide_'+(idx+1)+'.png';
-  fetch(url).then(function(r){return r.blob();}).then(function(blob){
-    var burl=URL.createObjectURL(blob);
-    var a=document.createElement('a');a.href=burl;a.download=nome;
-    document.body.appendChild(a);a.click();
-    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(burl);},200);
-    toast('✅ Slide '+(idx+1)+' baixado!');
-  }).catch(function(){
-    var a=document.createElement('a');a.href=url;a.download=nome;a.target='_blank';a.rel='noopener';
-    document.body.appendChild(a);a.click();document.body.removeChild(a);
-    toast('📲 Pressione e segure para salvar');
+  window.addEventListener('DOMContentLoaded', function() {
+    var params = new URLSearchParams(window.location.search);
+    var n = parseInt(params.get('slide') || '1');
+    var wrappers = document.querySelectorAll('.slide-wrapper');
+    wrappers.forEach(function(el, i) {
+      el.style.display = (i === n-1) ? 'flex' : 'none';
+    });
   });
-}
-function go(n){
-  var p=cur;cur=((n%tot)+tot)%tot;if(p===cur)return;
-  document.getElementById('s'+p).classList.remove('active');
-  document.getElementById('s'+cur).classList.add('active');
-  var dots=document.querySelectorAll('.dot');dots[p].classList.remove('active');dots[cur].classList.add('active');
-  var thumbs=document.querySelectorAll('.thumb');thumbs[p].classList.remove('active');thumbs[cur].classList.add('active');
-  thumbs[cur].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-  document.getElementById('cnt').textContent=(cur+1)+' / '+tot;
-}
-document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
 </script>
 </body>
 </html>
