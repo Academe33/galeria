@@ -7,43 +7,22 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,sans-serif;touch-action:manipulation;}
-
 #viewer{position:fixed;inset:0;background:#0D0B14;z-index:1;}
 .slide{position:absolute;inset:0;display:none;align-items:center;justify-content:center;}
 .slide.active{display:flex;}
 .slide img{max-width:100%;max-height:80%;object-fit:contain;}
-
 #btnL{position:fixed;left:0;top:0;width:46%;height:78%;z-index:999;background:rgba(0,0,0,0.001);border:none;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation;}
 #btnR{position:fixed;right:0;top:0;width:46%;height:78%;z-index:999;background:rgba(0,0,0,0.001);border:none;cursor:pointer;-webkit-appearance:none;appearance:none;touch-action:manipulation;}
-
 #aL{position:fixed;left:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:36px;pointer-events:none;z-index:1000;text-shadow:0 2px 12px #7333FF88;}
 #aR{position:fixed;right:12px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.45);font-size:36px;pointer-events:none;z-index:1000;text-shadow:0 2px 12px #7333FF88;}
-
 #cnt{position:fixed;top:18px;right:18px;background:rgba(115,51,255,.9);color:#fff;font-size:13px;padding:5px 14px;border-radius:20px;z-index:1001;pointer-events:none;font-weight:700;letter-spacing:.3px;box-shadow:0 0 12px #7333FF66;}
-
-#btnDl{
-  position:fixed;top:14px;left:16px;z-index:1002;
-  background:rgba(115,51,255,.9);color:#fff;border:none;
-  border-radius:20px;padding:7px 16px;font-size:13px;font-weight:700;
-  cursor:pointer;display:flex;align-items:center;gap:6px;
-  box-shadow:0 0 12px #7333FF66;
-  -webkit-appearance:none;appearance:none;touch-action:manipulation;
-}
+#btnDl{position:fixed;top:14px;left:16px;z-index:1002;background:rgba(115,51,255,.9);color:#fff;border:none;border-radius:20px;padding:7px 16px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;box-shadow:0 0 12px #7333FF66;-webkit-appearance:none;appearance:none;touch-action:manipulation;}
 #btnDl:active{transform:scale(.96);opacity:.85;}
-
-#toast{
-  position:fixed;top:62px;left:50%;transform:translateX(-50%);
-  background:rgba(115,51,255,.95);color:#fff;
-  padding:9px 20px;border-radius:24px;font-size:13px;font-weight:600;
-  z-index:2000;opacity:0;transition:opacity .3s;pointer-events:none;
-  white-space:nowrap;box-shadow:0 0 16px #7333FF88;
-}
+#toast{position:fixed;top:62px;left:50%;transform:translateX(-50%);background:rgba(115,51,255,.95);color:#fff;padding:9px 20px;border-radius:24px;font-size:13px;font-weight:600;z-index:2000;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;box-shadow:0 0 16px #7333FF88;}
 #toast.show{opacity:1;}
-
 #dots{position:fixed;bottom:74px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:1001;}
 .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-block;cursor:pointer;touch-action:manipulation;transition:background .2s,transform .2s;}
 .dot.active{background:#7333FF;transform:scale(1.3);box-shadow:0 0 6px #7333FF;}
-
 #thumbs{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:1001;overflow-x:auto;max-width:96vw;padding:2px 4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
 #thumbs::-webkit-scrollbar{display:none;}
 .thumb{width:52px;height:52px;border-radius:10px;object-fit:cover;flex-shrink:0;opacity:.28;border:2px solid transparent;cursor:pointer;touch-action:manipulation;transition:opacity .2s,border-color .2s,box-shadow .2s;}
@@ -53,14 +32,14 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 <body>
 
 <div id="viewer">
-  <div class="slide active" id="s0"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ffa79c4ee_generated_image.png"/></div>
-  <div class="slide" id="s1"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/7733801a2_generated_image.png"/></div>
-  <div class="slide" id="s2"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9e193020a_generated_image.png"/></div>
-  <div class="slide" id="s3"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/c2f7869b4_generated_image.png"/></div>
-  <div class="slide" id="s4"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9a0f6ee7c_generated_image.png"/></div>
-  <div class="slide" id="s5"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/47358aa03_generated_image.png"/></div>
-  <div class="slide" id="s6"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/796fdb05a_generated_image.png"/></div>
-  <div class="slide" id="s7"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/c7812e77d_generated_image.png"/></div>
+  <div class="slide active" id="s0"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/b840b2ae3_generated_image.png"/></div>
+  <div class="slide" id="s1"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/aa52acda8_generated_image.png"/></div>
+  <div class="slide" id="s2"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9b90a7802_generated_image.png"/></div>
+  <div class="slide" id="s3"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/580355571_generated_image.png"/></div>
+  <div class="slide" id="s4"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/6be12f53d_generated_image.png"/></div>
+  <div class="slide" id="s5"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9dba65fe4_generated_image.png"/></div>
+  <div class="slide" id="s6"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/5c556c3fc_generated_image.png"/></div>
+  <div class="slide" id="s7"><img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/aed64a318_generated_image.png"/></div>
 </div>
 
 <button id="btnL" onclick="go(cur-1)"></button>
@@ -68,7 +47,6 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 <span id="aL">&#8592;</span>
 <span id="aR">&#8594;</span>
 <div id="cnt">1 / 8</div>
-
 <button id="btnDl" onclick="salvar()">⬇️ Salvar esta</button>
 <div id="toast"></div>
 
@@ -84,85 +62,53 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 </div>
 
 <div id="thumbs">
-  <img class="thumb active" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ffa79c4ee_generated_image.png" onclick="go(0)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/7733801a2_generated_image.png" onclick="go(1)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9e193020a_generated_image.png" onclick="go(2)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/c2f7869b4_generated_image.png" onclick="go(3)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9a0f6ee7c_generated_image.png" onclick="go(4)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/47358aa03_generated_image.png" onclick="go(5)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/796fdb05a_generated_image.png" onclick="go(6)"/>
-  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/c7812e77d_generated_image.png" onclick="go(7)"/>
+  <img class="thumb active" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/b840b2ae3_generated_image.png" onclick="go(0)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/aa52acda8_generated_image.png" onclick="go(1)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9b90a7802_generated_image.png" onclick="go(2)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/580355571_generated_image.png" onclick="go(3)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/6be12f53d_generated_image.png" onclick="go(4)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9dba65fe4_generated_image.png" onclick="go(5)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/5c556c3fc_generated_image.png" onclick="go(6)"/>
+  <img class="thumb" src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/aed64a318_generated_image.png" onclick="go(7)"/>
 </div>
 
 <script>
-var cur = 0, tot = 8;
-var imgs = [
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/ffa79c4ee_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/7733801a2_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9e193020a_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/c2f7869b4_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9a0f6ee7c_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/47358aa03_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/796fdb05a_generated_image.png',
-  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/c7812e77d_generated_image.png'
+var cur=0,tot=8;
+var imgs=[
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/b840b2ae3_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/aa52acda8_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9b90a7802_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/580355571_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/6be12f53d_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/9dba65fe4_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/5c556c3fc_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/aed64a318_generated_image.png'
 ];
-
-function toast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 2500);
+function toast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},2500);}
+function salvar(){
+  var idx=cur;var url=imgs[idx];var nome='academe_slide_'+(idx+1)+'.png';
+  fetch(url).then(function(r){return r.blob();}).then(function(blob){
+    var burl=URL.createObjectURL(blob);
+    var a=document.createElement('a');a.href=burl;a.download=nome;
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(burl);},200);
+    toast('✅ Slide '+(idx+1)+' baixado!');
+  }).catch(function(){
+    var a=document.createElement('a');a.href=url;a.download=nome;a.target='_blank';a.rel='noopener';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    toast('📲 Pressione e segure para salvar');
+  });
 }
-
-function salvar() {
-  var idx = cur;
-  var url = imgs[idx];
-  var nome = 'academe_slide_' + (idx + 1) + '.png';
-  fetch(url)
-    .then(function(r){ return r.blob(); })
-    .then(function(blob){
-      var burl = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = burl;
-      a.download = nome;
-      document.body.appendChild(a);
-      a.click();
-      setTimeout(function(){ document.body.removeChild(a); URL.revokeObjectURL(burl); }, 200);
-      toast('✅ Slide ' + (idx+1) + ' baixado!');
-    })
-    .catch(function(){
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = nome;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      toast('📲 Pressione e segure para salvar');
-    });
-}
-
-function go(n) {
-  var p = cur;
-  cur = ((n % tot) + tot) % tot;
-  if (p === cur) return;
-  document.getElementById('s' + p).classList.remove('active');
-  document.getElementById('s' + cur).classList.add('active');
-  var dots = document.querySelectorAll('.dot');
-  dots[p].classList.remove('active');
-  dots[cur].classList.add('active');
-  var thumbs = document.querySelectorAll('.thumb');
-  thumbs[p].classList.remove('active');
-  thumbs[cur].classList.add('active');
+function go(n){
+  var p=cur;cur=((n%tot)+tot)%tot;if(p===cur)return;
+  document.getElementById('s'+p).classList.remove('active');
+  document.getElementById('s'+cur).classList.add('active');
+  var dots=document.querySelectorAll('.dot');dots[p].classList.remove('active');dots[cur].classList.add('active');
+  var thumbs=document.querySelectorAll('.thumb');thumbs[p].classList.remove('active');thumbs[cur].classList.add('active');
   thumbs[cur].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-  document.getElementById('cnt').textContent = (cur + 1) + ' / ' + tot;
+  document.getElementById('cnt').textContent=(cur+1)+' / '+tot;
 }
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'ArrowRight') go(cur + 1);
-  if (e.key === 'ArrowLeft') go(cur - 1);
-});
+document.addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1);});
 </script>
 </body>
 </html>
