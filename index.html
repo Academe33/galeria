@@ -21,7 +21,6 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 
 #cnt{position:fixed;top:18px;right:18px;background:rgba(115,51,255,.9);color:#fff;font-size:13px;padding:5px 14px;border-radius:20px;z-index:1001;pointer-events:none;font-weight:700;letter-spacing:.3px;box-shadow:0 0 12px #7333FF66;}
 
-/* BOTÃO DOWNLOAD — abre a imagem atual em nova aba para salvar */
 #btnDl{
   position:fixed;top:14px;left:16px;z-index:1002;
   background:rgba(115,51,255,.9);color:#fff;border:none;
@@ -29,8 +28,6 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
   cursor:pointer;display:flex;align-items:center;gap:6px;
   box-shadow:0 0 12px #7333FF66;
   -webkit-appearance:none;appearance:none;touch-action:manipulation;
-  letter-spacing:.2px;
-  text-decoration:none;
 }
 #btnDl:active{transform:scale(.96);opacity:.85;}
 
@@ -63,8 +60,7 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 <span id="aR">&#8594;</span>
 <div id="cnt">1 / 8</div>
 
-<!-- BOTÃO: abre a imagem atual em nova aba — iOS permite salvar direto -->
-<a id="btnDl" href="#" target="_blank" onclick="updateDlLink()">⬇️ Salvar esta</a>
+<button id="btnDl" onclick="salvarAtual()">⬇️ Salvar esta</button>
 
 <div id="dots">
   <span class="dot active" onclick="go(0)"></span>
@@ -89,8 +85,9 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 </div>
 
 <script>
-var cur=0,tot=8;
-var imgs=[
+var cur = 0;
+var tot = 8;
+var imgs = [
   'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/1ea12b648_generated_image.png',
   'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fc4464baf_generated_image.png',
   'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/04b56d41c_generated_image.png',
@@ -101,32 +98,31 @@ var imgs=[
   'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/e280c0e23_generated_image.png'
 ];
 
-function updateDlLink(){
-  document.getElementById('btnDl').href = imgs[cur];
+function salvarAtual() {
+  // lê cur no momento exato do clique — sem cache
+  var url = imgs[cur];
+  window.location.href = url;
 }
 
-// atualiza o link sempre que troca de slide
-function go(n){
-  var p=cur;cur=((n%tot)+tot)%tot;
-  if(p===cur)return;
-  document.getElementById('s'+p).classList.remove('active');
-  document.getElementById('s'+cur).classList.add('active');
-  var dots=document.querySelectorAll('.dot');
-  dots[p].classList.remove('active');dots[cur].classList.add('active');
-  var thumbs=document.querySelectorAll('.thumb');
-  thumbs[p].classList.remove('active');thumbs[cur].classList.add('active');
+function go(n) {
+  var p = cur;
+  cur = ((n % tot) + tot) % tot;
+  if (p === cur) return;
+  document.getElementById('s' + p).classList.remove('active');
+  document.getElementById('s' + cur).classList.add('active');
+  var dots = document.querySelectorAll('.dot');
+  dots[p].classList.remove('active');
+  dots[cur].classList.add('active');
+  var thumbs = document.querySelectorAll('.thumb');
+  thumbs[p].classList.remove('active');
+  thumbs[cur].classList.add('active');
   thumbs[cur].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-  document.getElementById('cnt').textContent=(cur+1)+' / '+tot;
-  // atualiza link do botão automaticamente
-  document.getElementById('btnDl').href = imgs[cur];
+  document.getElementById('cnt').textContent = (cur + 1) + ' / ' + tot;
 }
 
-// inicializa com slide 0
-document.getElementById('btnDl').href = imgs[0];
-
-document.addEventListener('keydown',function(e){
-  if(e.key==='ArrowRight')go(cur+1);
-  if(e.key==='ArrowLeft')go(cur-1);
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'ArrowRight') go(cur + 1);
+  if (e.key === 'ArrowLeft') go(cur - 1);
 });
 </script>
 </body>
