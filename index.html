@@ -21,47 +21,18 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 
 #cnt{position:fixed;top:18px;right:18px;background:rgba(115,51,255,.9);color:#fff;font-size:13px;padding:5px 14px;border-radius:20px;z-index:1001;pointer-events:none;font-weight:700;letter-spacing:.3px;box-shadow:0 0 12px #7333FF66;}
 
-/* BOTÃO DOWNLOAD */
+/* BOTÃO DOWNLOAD — abre a imagem atual em nova aba para salvar */
 #btnDl{
   position:fixed;top:14px;left:16px;z-index:1002;
   background:rgba(115,51,255,.9);color:#fff;border:none;
-  border-radius:20px;padding:7px 14px;font-size:13px;font-weight:700;
+  border-radius:20px;padding:7px 16px;font-size:13px;font-weight:700;
   cursor:pointer;display:flex;align-items:center;gap:6px;
   box-shadow:0 0 12px #7333FF66;
   -webkit-appearance:none;appearance:none;touch-action:manipulation;
   letter-spacing:.2px;
-}
-#btnDl:active{transform:scale(.96);}
-
-/* MODAL DE DOWNLOAD */
-#dlModal{
-  display:none;position:fixed;inset:0;z-index:3000;
-  background:rgba(0,0,0,.85);
-  align-items:flex-end;justify-content:center;
-}
-#dlModal.open{display:flex;}
-#dlBox{
-  background:#1A1526;border-radius:24px 24px 0 0;
-  width:100%;max-width:480px;padding:28px 20px 40px;
-}
-#dlBox h2{color:#fff;font-size:18px;font-weight:800;margin-bottom:6px;}
-#dlBox p{color:#aaa;font-size:13px;margin-bottom:20px;line-height:1.5;}
-#dlList{display:flex;flex-direction:column;gap:10px;margin-bottom:24px;}
-.dlItem{
-  display:flex;align-items:center;gap:12px;
-  background:#231E34;border-radius:14px;padding:10px 14px;
   text-decoration:none;
 }
-.dlItem img{width:48px;height:48px;border-radius:8px;object-fit:cover;flex-shrink:0;}
-.dlItem span{color:#fff;font-size:14px;font-weight:600;flex:1;}
-.dlItem .arrow{color:#7333FF;font-size:20px;font-weight:900;}
-#dlClose{
-  width:100%;padding:15px;border:none;border-radius:16px;
-  background:#7333FF;color:#fff;font-size:16px;font-weight:800;
-  cursor:pointer;-webkit-appearance:none;appearance:none;
-  touch-action:manipulation;
-}
-#dlClose:active{opacity:.85;}
+#btnDl:active{transform:scale(.96);opacity:.85;}
 
 #dots{position:fixed;bottom:74px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:1001;}
 .dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-block;cursor:pointer;touch-action:manipulation;transition:background .2s,transform .2s;}
@@ -92,58 +63,8 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 <span id="aR">&#8594;</span>
 <div id="cnt">1 / 8</div>
 
-<button id="btnDl" onclick="openModal()">⬇️ Baixar todas</button>
-
-<!-- MODAL -->
-<div id="dlModal" onclick="closeModal(event)">
-  <div id="dlBox">
-    <h2>📥 Baixar carrossel</h2>
-    <p>Toque em cada imagem para abrir e depois pressione e segure para salvar no seu celular.</p>
-    <div id="dlList">
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/1ea12b648_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/1ea12b648_generated_image.png"/>
-        <span>Slide 01 — Cover</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fc4464baf_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fc4464baf_generated_image.png"/>
-        <span>Slide 02 — O mundo mudou</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/04b56d41c_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/04b56d41c_generated_image.png"/>
-        <span>Slide 03 — 4 Habilidades</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/88be8eb17_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/88be8eb17_generated_image.png"/>
-        <span>Slide 04 — Ed. Financeira</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/094e3d276_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/094e3d276_generated_image.png"/>
-        <span>Slide 05 — Inteligência Emocional</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/b41285872_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/b41285872_generated_image.png"/>
-        <span>Slide 06 — Empreendedorismo</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/f3a835633_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/f3a835633_generated_image.png"/>
-        <span>Slide 07 — Inteligência Artificial</span>
-        <span class="arrow">↗</span>
-      </a>
-      <a class="dlItem" href="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/e280c0e23_generated_image.png" target="_blank">
-        <img src="https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/e280c0e23_generated_image.png"/>
-        <span>Slide 08 — CTA Final</span>
-        <span class="arrow">↗</span>
-      </a>
-    </div>
-    <button id="dlClose" onclick="closeModal()">Fechar</button>
-  </div>
-</div>
+<!-- BOTÃO: abre a imagem atual em nova aba — iOS permite salvar direto -->
+<a id="btnDl" href="#" target="_blank" onclick="updateDlLink()">⬇️ Salvar esta</a>
 
 <div id="dots">
   <span class="dot active" onclick="go(0)"></span>
@@ -169,7 +90,22 @@ html,body{width:100%;height:100%;background:#0D0B14;overflow:hidden;font-family:
 
 <script>
 var cur=0,tot=8;
+var imgs=[
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/1ea12b648_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/fc4464baf_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/04b56d41c_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/88be8eb17_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/094e3d276_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/b41285872_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/f3a835633_generated_image.png',
+  'https://media.base44.com/images/public/69b31c93e0ddd0abcd7d5ae9/e280c0e23_generated_image.png'
+];
 
+function updateDlLink(){
+  document.getElementById('btnDl').href = imgs[cur];
+}
+
+// atualiza o link sempre que troca de slide
 function go(n){
   var p=cur;cur=((n%tot)+tot)%tot;
   if(p===cur)return;
@@ -181,21 +117,16 @@ function go(n){
   thumbs[p].classList.remove('active');thumbs[cur].classList.add('active');
   thumbs[cur].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
   document.getElementById('cnt').textContent=(cur+1)+' / '+tot;
+  // atualiza link do botão automaticamente
+  document.getElementById('btnDl').href = imgs[cur];
 }
 
-function openModal(){
-  document.getElementById('dlModal').classList.add('open');
-}
-function closeModal(e){
-  if(!e||e.target===document.getElementById('dlModal')||e.currentTarget===document.getElementById('dlClose')){
-    document.getElementById('dlModal').classList.remove('open');
-  }
-}
+// inicializa com slide 0
+document.getElementById('btnDl').href = imgs[0];
 
 document.addEventListener('keydown',function(e){
   if(e.key==='ArrowRight')go(cur+1);
   if(e.key==='ArrowLeft')go(cur-1);
-  if(e.key==='Escape')document.getElementById('dlModal').classList.remove('open');
 });
 </script>
 </body>
