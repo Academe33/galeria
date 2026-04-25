@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academe — Perfil Redesign</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .phone {
+    width: 390px;
+    background: #0D0B14;
+    border-radius: 44px;
+    overflow: hidden;
+    box-shadow: 0 40px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.08);
+    position: relative;
+  }
+
+  /* STATUS BAR */
+  .status-bar {
+    padding: 14px 28px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .status-bar .time { font-size: 15px; font-weight: 700; color: #fff; }
+  .status-bar .icons { display: flex; gap: 6px; align-items: center; }
+  .status-bar .icons span { font-size: 13px; color: #fff; }
+
+  /* SCROLL CONTENT */
+  .scroll {
+    overflow-y: auto;
+    max-height: 820px;
+    padding-bottom: 90px;
+  }
+  .scroll::-webkit-scrollbar { display: none; }
+
+  /* HERO / IDENTIDADE */
+  .hero {
+    padding: 24px 24px 0;
+    position: relative;
+  }
+
+  .hero-top {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7333FF, #4F1AD6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    border: 3px solid rgba(115,51,255,0.5);
+  }
+
+  .avatar-badge {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    background: #7333FF;
+    border-radius: 50%;
+    border: 2px solid #0D0B14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .hero-info { flex: 1; }
+  .hero-name { font-size: 22px; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+  .hero-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 3px; }
+  .hero-school {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(115,51,255,0.15);
+    border: 1px solid rgba(115,51,255,0.3);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #A97DFF;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+
+  /* JORNADA ATUAL — DESTAQUE MÁXIMO */
+  .jornada-card {
+    margin: 0 24px 20px;
+    background: linear-gradient(135deg, #1A0F3A 0%, #0F0A24 100%);
+    border: 1px solid rgba(115,51,255,0.3);
+    border-radius: 20px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .jornada-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, rgba(115,51,255,0.3), transparent 70%);
+    border-radius: 50%;
+  }
+
+  .jornada-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #7333FF;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .jornada-titulo {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .jornada-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+  }
+
+  .progress-track {
+    background: rgba(255,255,255,0.08);
+    border-radius: 100px;
+    height: 6px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: linear-gradient(90deg, #7333FF, #A97DFF);
+    width: 35%;
+    position: relative;
+  }
+
+  .progress-fill::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 10px; height: 10px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(169,125,255,0.8);
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  .progress-info span:last-child { color: #A97DFF; font-weight: 700; }
+
+  .cta-btn {
+    margin-top: 16px;
+    width: 100%;
+    background: linear-gradient(135deg, #7333FF, #4F1AD6);
+    border: none;
+    border-radius: 14px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    letter-spacing: 0.2px;
+  }
+
+  /* STATS — 3 NÚMEROS */
+  .stats-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 24px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .stat-icon { font-size: 18px; margin-bottom: 6px; }
+  .stat-num { font-size: 22px; font-weight: 800; color: #fff; }
+  .stat-label { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 2px; font-weight: 500; letter-spacing: 0.5px; text-transform: uppercase; }
+
+  /* SEÇÃO CONQUISTAS */
+  .section {
+    padding: 0 24px;
+    margin-bottom: 20px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .section-title { font-size: 16px; font-weight: 700; color: #fff; }
+  .section-link { font-size: 12px; color: #7333FF; font-weight: 600; }
+
+  /* CERTIFICADO CARD */
+  .cert-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cert-icon {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, #7333FF22, #4F1AD622);
+    border: 1px solid rgba(115,51,255,0.3);
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .cert-info { flex: 1; }
+  .cert-title { font-size: 14px; font-weight: 700; color: #fff; }
+  .cert-sub { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .cert-badge {
+    background: rgba(115,51,255,0.15);
+    border: 1px solid rgba(115,51,255,0.3);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: #A97DFF;
+    font-weight: 700;
+  }
+
+  /* MISSÕES */
+  .missao-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .missao-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, #7333FF, #4F1AD6);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .missao-text { flex: 1; }
+  .missao-title { font-size: 13px; font-weight: 600; color: #fff; }
+  .missao-sub { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 2px; }
+  .missao-pts {
+    font-size: 14px;
+    font-weight: 800;
+    color: #A97DFF;
+  }
+
+  /* TAB BAR */
+  .tab-bar {
+    position: sticky;
+    bottom: 0;
+    background: rgba(13,11,20,0.95);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    padding: 12px 0 28px;
+  }
+
+  .tab-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+  }
+
+  .tab-icon { font-size: 22px; }
+  .tab-label { font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 500; }
+  .tab-item.active .tab-label { color: #7333FF; }
+  .tab-item.active .tab-icon { filter: drop-shadow(0 0 8px rgba(115,51,255,0.6)); }
+
+  /* HOME INDICATOR */
+  .home-indicator {
+    height: 5px;
+    width: 134px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 3px;
+    margin: 8px auto 0;
+  }
+</style>
+</head>
+<body>
+<div class="phone">
+  <div class="status-bar">
+    <span class="time">00:05</span>
+    <div class="icons">
+      <span>●●●</span>
+      <span>WiFi</span>
+      <span>🔋</span>
+    </div>
+  </div>
+
+  <div class="scroll">
+
+    <!-- HERO: IDENTIDADE -->
+    <div class="hero">
+      <div class="hero-top">
+        <div class="avatar-wrap">
+          <div class="avatar">A</div>
+          <div class="avatar-badge">⚡</div>
+        </div>
+        <div class="hero-info">
+          <div class="hero-name">André Loureiro</div>
+          <div class="hero-sub">andre@academe.com.br</div>
+          <div class="hero-school">🏫 Colégio Academe · 1º EM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JORNADA ATUAL — FOCO MÁXIMO -->
+    <div class="jornada-card">
+      <div class="jornada-label">🚀 Jornada Atual · 2º Bimestre</div>
+      <div class="jornada-titulo">Educação Financeira</div>
+      <div class="jornada-sub">Desafio: Planejamento Pessoal Real</div>
+      <div class="progress-track">
+        <div class="progress-fill"></div>
+      </div>
+      <div class="progress-info">
+        <span>3 de 8 etapas concluídas</span>
+        <span>35% completo</span>
+      </div>
+      <button class="cta-btn">
+        ▶ Continuar onde parei
+      </button>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Nível</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-num">340</div>
+        <div class="stat-label">Pontos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🏆</div>
+        <div class="stat-num">1</div>
+        <div class="stat-label">Certificado</div>
+      </div>
+    </div>
+
+    <!-- CERTIFICADOS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Conquistas</div>
+        <div class="section-link">Ver todas</div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🎖️</div>
+        <div class="cert-info">
+          <div class="cert-title">IA e Tecnologia</div>
+          <div class="cert-sub">1º Bimestre · Concluído com excelência</div>
+        </div>
+        <div class="cert-badge">✓</div>
+      </div>
+    </div>
+
+    <!-- MISSÕES ATIVAS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Como ganhar pontos</div>
+      </div>
+
+      <div class="missao-item">
+        <div class="missao-icon">▶</div>
+        <div class="missao-text">
+          <div class="missao-title">Assista uma aula</div>
+          <div class="missao-sub">Disponível agora</div>
+        </div>
+        <div class="missao-pts">+20</div>
+      </div>
+
+      <div class="missao-item">
+        <div class="missao-icon">💬</div>
+        <div class="missao-text">
+          <div class="missao-title">Comente em uma aula</div>
+          <div class="missao-sub">Compartilhe sua visão</div>
+        </div>
+        <div class="missao-pts">+5</div>
+      </div>
+
+      <div class="missao-item">
+        <div class="missao-icon">📖</div>
+        <div class="missao-text">
+          <div class="missao-title">Conclua um módulo</div>
+          <div class="missao-sub">Módulo 4 em andamento</div>
+        </div>
+        <div class="missao-pts">+500</div>
+      </div>
+
+      <div class="missao-item">
+        <div class="missao-icon">🏆</div>
+        <div class="missao-text">
+          <div class="missao-title">Conclua sua Jornada</div>
+          <div class="missao-sub">Ed. Financeira · 2º Bimestre</div>
+        </div>
+        <div class="missao-pts">+1.000</div>
+      </div>
+    </div>
+
+  </div><!-- end scroll -->
+
+  <!-- TAB BAR -->
+  <div class="tab-bar">
+    <div class="tab-item">
+      <div class="tab-icon">🏠</div>
+      <div class="tab-label">Home</div>
+    </div>
+    <div class="tab-item">
+      <div class="tab-icon">🗺️</div>
+      <div class="tab-label">Jornadas</div>
+    </div>
+    <div class="tab-item active">
+      <div class="tab-icon">👤</div>
+      <div class="tab-label">Perfil</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
